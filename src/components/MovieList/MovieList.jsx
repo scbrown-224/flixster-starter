@@ -9,6 +9,7 @@ const MovieList = () => {
     // useState for movies
     const [movies, setMovies] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
+    const [pageNum, setPageNum] = useState(1); // State to keep track of current page number
 
     useEffect(() => {
         // fetch movie data from the api
@@ -16,7 +17,7 @@ const MovieList = () => {
         async function fetchMovie() {
             const apiKey = import.meta.env.VITE_API_KEY;
             let searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query={searchTerm}`; 
-            let url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}`; 
+            let url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&page=${pageNum}`; 
 
             // fetch(searchUrl)
             //   .then(response => response.json())
@@ -27,7 +28,8 @@ const MovieList = () => {
             const data = await response.json();
             console.log('data is: ', data);
 
-            setMovies(data.results);
+            // setMovies(data.results);
+            setMovies((prevMovies) => [...prevMovies, ...data.results]); // Append new movies to existing movies
         }
         fetchMovie();
 
@@ -36,7 +38,7 @@ const MovieList = () => {
         // stopped @ 1:12:42 of vid
 
 
-    }, []);
+    }, [pageNum]);
 
     const searchMovies = async () => {
       const apiKey = import.meta.env.VITE_API_KEY;
@@ -58,6 +60,11 @@ const MovieList = () => {
       }
   };
 
+  // miss chat herself
+  const loadMoreMovies = () => {
+    setPageNum((prevPageNum) => prevPageNum + 1); // Increment page number to fetch next page
+};
+
 
   return (
     <>
@@ -75,6 +82,9 @@ const MovieList = () => {
                 rating={movie.vote_average}
             />
         ))}
+      </div>
+      <div className="loadMoreContainer">
+        <button onClick={loadMoreMovies}>Load More</button>
       </div>
     </>
   );
