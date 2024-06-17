@@ -16,7 +16,7 @@ const MovieList = () => {
         
         async function fetchMovie() {
             const apiKey = import.meta.env.VITE_API_KEY;
-            let searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query={searchTerm}`; 
+            let searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${searchTerm}`; 
             let url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&page=${pageNum}`; 
 
             // fetch(searchUrl)
@@ -29,7 +29,13 @@ const MovieList = () => {
             console.log('data is: ', data);
 
             // setMovies(data.results);
-            setMovies((prevMovies) => [...prevMovies, ...data.results]); // Append new movies to existing movies
+            // setMovies((prevMovies) => [...prevMovies, ...data.results]); // Append new movies to existing movies
+
+            if(pageNum === 1) {
+              setMovies(data.results);
+            } else {
+              setMovies((prevMovies) => [...prevMovies, ...data.results]); // Append new movies to existing movies
+            }
         }
         fetchMovie();
 
@@ -62,7 +68,7 @@ const MovieList = () => {
 
   // miss chat herself
   const loadMoreMovies = () => {
-    setPageNum((prevPageNum) => prevPageNum + 1); // Increment page number to fetch next page
+    setPageNum((pageNum) => pageNum + 1); // Increment page number to fetch next page
 };
 
 
