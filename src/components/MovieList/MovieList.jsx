@@ -17,37 +17,46 @@ const MovieList = () => {
   useEffect(() => {
     async function fetchMovie() {
       const apiKey = import.meta.env.VITE_API_KEY;
+      // url is based on currently active tab
       let url = `https://api.themoviedb.org/3/${activeTab === 'search' ? 'search/movie' : 'discover/movie'}?api_key=${apiKey}&page=${pageNum}`;
 
+      // add search term to url if on search
       if (activeTab === 'search' && searchTerm) {
         url += `&query=${searchTerm}`;
       }
 
+      // add sort option to url if now playing & sorting
       if (sortOption && activeTab === 'nowPlaying') {
         url += `&sort_by=${sortOption}`;
       }
 
+      // add genre if conditions match
       if (selectedGenre && activeTab === 'nowPlaying') {
         url += `&with_genres=${selectedGenre}`;
       }
 
+      // fetching
       const response = await fetch(url);
       const data = await response.json();
       console.log('Fetched data:', data);
 
+      // if 1st page, movies is fetched data
       if (pageNum === 1) {
         setMovies(data.results);
       } else {
+        // else append to existing
         setMovies((prevMovies) => [...prevMovies, ...data.results]);
       }
     }
     fetchMovie();
   }, [pageNum, sortOption, selectedGenre, activeTab, searchTerm]);
 
+  // load movies incrementing by page num
   const loadMoreMovies = () => {
     setPageNum((prevPageNum) => prevPageNum + 1);
   };
 
+  // fetch genre useEffect
   useEffect(() => {
     const fetchGenres = async () => {
       const apiKey = import.meta.env.VITE_API_KEY;
@@ -56,7 +65,7 @@ const MovieList = () => {
       try {
         const response = await fetch(url);
         const data = await response.json();
-        setGenres(data.genres);
+        setGenres(data.genres); // set genre to fetched data
       } catch (error) {
         console.error('Error fetching genres:', error);
       }
@@ -64,6 +73,7 @@ const MovieList = () => {
     fetchGenres();
   }, []);
 
+  // get genre name based on IDs
   const getGenreNames = (genreIds) => {
     return genreIds.map(id => genres.find(genre => genre.id === id)?.name).join(', ');
   };
@@ -79,22 +89,24 @@ const MovieList = () => {
           setMovies([]);
         }
       }} />
-
+      {/* search only visible if active tab is search */}
       {activeTab === 'search' && (
         <div className='searchContainer'>
           <input
             type='text'
             placeholder='Search'
             value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
+            onChange={(e) => setSearchTerm(e.target.value)} // update search term
           />
           <button onClick={() => {
             if (searchTerm.trim() !== '') {
-              searchMovies();
+              searchMovies(); // search if search input isn't empty
             }
           }}>Search</button>
         </div>
       )}
+      {/* dropdown for sorting & filtering by genre */}
+      {/* only shows if active tab is now playing */}
       {activeTab === 'nowPlaying' && (
         <div className='dropdownContainer'>
           <select value={sortOption} onChange={(e) => {
@@ -119,6 +131,7 @@ const MovieList = () => {
         </div>
       )}
       </div>
+      {/* list of movies fetched from the API displaying */}
       <div className='movie-list'>
         {movies.map((movie) => (
           <MovieCard
@@ -130,11 +143,13 @@ const MovieList = () => {
           />
         ))}
       </div>
+      {/* load more only showing if active tab is now playing */}
       {activeTab === 'nowPlaying' && (
         <div className="loadMoreContainer">
           <button className='loadMoreButton' onClick={loadMoreMovies}>Load More</button>
         </div>
       )}
+      {/* modal to show the selected movie */}
       {selectedMovie && (
         <Modal
           show={selectedMovie !== null}

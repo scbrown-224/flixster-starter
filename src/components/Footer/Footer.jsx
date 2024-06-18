@@ -8,6 +8,7 @@ const Footer = (props) => {
                 <div>
                     <p>Made by Sophisticated Sydney</p>
                     <p>now go watch some movies!</p>
+                    <p>prefers to move in silence, so no contact</p>
                 </div>
             </footer>
         </div>
