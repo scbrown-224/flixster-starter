@@ -5,6 +5,7 @@ import React from 'react';
 import "./components/MovieCard/MovieCard";
 import MovieCard from './components/MovieCard/MovieCard';
 import MovieList from './components/MovieList/MovieList';
+import Footer from './components/Footer/Footer';
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
       <div className='app'>
         <MovieList />
       </div>
+      <Footer />
     </div>
   );
 };

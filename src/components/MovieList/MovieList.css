@@ -135,3 +135,47 @@
     flex-direction: column;
     align-items: center;
 }
+
+/* NavigationBar.css */
+.loadMoreContainer {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* background-color: #f8f8f8; */
+    background-color: #eef8f2;;
+    padding: 10px;
+    border-radius: 8px;
+  }
+  
+  .loadMoreButton {
+    padding: 10px 20px;
+    margin: 0 5px;
+    border: none;
+    background-color: #bbb;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    /* width: 550px;
+    height: 40px; */
+    font-size: 22px;
+    background-color: #f8f8f8;
+    border-radius: 7px;
+    color: #555;
+  }
+  
+  .loadMoreButton.active {
+    color: #555;
+    background-color: #f8f8f8;
+  }
+  
+  .loadMoreButton:hover {
+    background-color: #ccc;
+  }
+
+  .bold {
+    font-weight: bold;
+  }
+
+  h4 {
+    font-weight: normal;
+  }

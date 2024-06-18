@@ -14,10 +14,11 @@
   .modal-content {
     background: white;
     padding: 20px;
-    border-radius: 5px;
+    border-radius: 10px;
     position: relative;
     max-width: 500px;
     width: 90%;
+    color: #555;
   }
   
   .modal-header {
@@ -27,4 +28,29 @@
   
   .modal-body {
     margin-top: 20px;
+  }
+
+  
+  .modal-button {
+    padding: 10px 20px;
+    margin: 0 5px;
+    border: none;
+    background-color: #edf6f0;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    /* width: 550px;
+    height: 40px; */
+    font-size: 17px;
+    background-color: #f8f8f8;
+    border-radius: 7px;
+    color: #555;
+  }
+  
+  .modal-button.active {
+    color: #555;
+    background-color: #f8f8f8;
+  }
+  
+  .modal-button:hover {
+    background-color: #ccc;
   }

@@ -132,7 +132,7 @@ const MovieList = () => {
       </div>
       {activeTab === 'nowPlaying' && (
         <div className="loadMoreContainer">
-          <button onClick={loadMoreMovies}>Load More</button>
+          <button className='loadMoreButton' onClick={loadMoreMovies}>Load More</button>
         </div>
       )}
       {selectedMovie && (
@@ -146,9 +146,9 @@ const MovieList = () => {
             style={{ width: "100%" }}
           />
           <h2>{selectedMovie.original_title}</h2>
-          <h4>Release Date: {selectedMovie.release_date}</h4>
-          <h4>Genres: {getGenreNames(selectedMovie.genre_ids)}</h4>
-          <h4>Overview: {selectedMovie.overview}</h4>
+          <h4><span className='bold'>Release Date: </span>{selectedMovie.release_date}</h4>
+          <h4><span className='bold'>Genres: </span>{getGenreNames(selectedMovie.genre_ids)}</h4>
+          <h4><span className='bold'>Overview: </span>{selectedMovie.overview}</h4>
         </Modal>
       )}
       
