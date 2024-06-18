@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './MovieList.css';
 import MovieCard from '../MovieCard/MovieCard';
+import Modal from '../Modal/Modal';
 // use async function in useEffect to get movie data
 
 
@@ -10,6 +11,7 @@ const MovieList = () => {
     const [movies, setMovies] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [pageNum, setPageNum] = useState(1); // State to keep track of current page number
+    const [selectedMovie, setSelectedMovie] = useState(null);
 
     useEffect(() => {
         // fetch movie data from the api
@@ -81,17 +83,36 @@ const MovieList = () => {
 
       <div className = 'movie-list'>
       {movies.map((movie) => (
-            <MovieCard 
-                key={movie.id}
-                img={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                title={movie.original_title}
-                rating={movie.vote_average}
-            />
-        ))}
+        <MovieCard 
+          key={movie.id}
+          img={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+          title={movie.original_title}
+          rating={movie.vote_average}
+          onClick={() => setSelectedMovie(movie)}
+        />
+      ))}
       </div>
       <div className="loadMoreContainer">
         <button onClick={loadMoreMovies}>Load More</button>
       </div>
+
+
+      {/* ternary syntax. will only do the stuff after if true (selected) */}
+      {selectedMovie && (
+        <Modal
+          show={selectedMovie !== null}
+          onClose={() => setSelectedMovie(null)}
+        >
+          <h2>{selectedMovie.original_title}</h2>
+          <img
+            src={`https://image.tmdb.org/t/p/w500${selectedMovie.poster_path}`}
+            alt={selectedMovie.original_title}
+            style={{ width: "100%" }}
+          />
+        </Modal>
+      )}
+
+
     </>
   );
 };
