@@ -14,8 +14,10 @@ const MovieList = () => {
     const [selectedMovie, setSelectedMovie] = useState(null);
     const [genres, setGenres] = useState([]);
 
-    // new
+    // use state choosing filter sort type
     const [sortOption, setSortOption] = useState('');
+    // use state for genre drop down
+    const [selectedGenre, setSelectedGenre] = useState('');
 
     useEffect(() => {
         // fetch movie data from the api
@@ -25,8 +27,12 @@ const MovieList = () => {
             let searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${searchTerm}`; 
             let url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&page=${pageNum}`; 
 
+            // modifies url based on the filter display type
             if (sortOption) {
               url += `&sort_by=${sortOption}`;
+            }
+            if (selectedGenre) {
+              url += `&with_genres=${selectedGenre}`;
             }
 
             const response = await fetch(url);
@@ -49,7 +55,7 @@ const MovieList = () => {
         // stopped @ 1:12:42 of vid
 
 
-    }, [pageNum, sortOption]);
+    }, [pageNum, sortOption, selectedGenre]);
 
     const searchMovies = async () => {
       const apiKey = import.meta.env.VITE_API_KEY;
@@ -115,6 +121,13 @@ const getGenreNames = (genreIds) => {
           <option value='popularity.desc'>Popularity Descending</option>
           <option value='release_date.desc'>Release Date Descending</option>
           <option value='vote_average.desc'>Rating Descending</option>
+        </select>
+
+        <select onChange={(e) => setSelectedGenre(e.target.value)}>
+          <option value=''>All Genres</option>
+          {genres.map((genre) => (
+            <option key={genre.id} value={genre.id}>{genre.name}</option>
+          ))}
         </select>
       </div>
 
