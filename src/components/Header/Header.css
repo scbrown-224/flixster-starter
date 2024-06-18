@@ -1,11 +1,22 @@
-.app-header {
-    background: linear-gradient(to right, #6a11cb, #2575fc);
-  
-    padding: 20px;
+ .app-header {
+    /* background: linear-gradient(to right, #6a11cb, #2575fc); */
+    background-size: cover;
+    padding: 70px;
     text-align: center;
     font-size: 26px;
     font-family: "Arial", sans-serif;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 5px; /* Rounded corners for a softer look */
     margin-bottom: 20px;
+    background-image: url(https://media.giphy.com/media/19ZCKSoEvSquk/giphy.gif?cid=790b7611o4p8dekthqyzdavrwisrtdq7jjv7ld3bnprtojwt&ep=v1_gifs_search&rid=giphy.gif&ct=g);
+    background-position: center;
+  } 
+
+  h1 {
+    font-size: 70px;
   }
+
+
+
+
+  

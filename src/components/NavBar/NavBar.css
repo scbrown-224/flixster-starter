@@ -3,19 +3,31 @@
     display: flex;
     justify-content: center;
     margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* background-color: #f8f8f8; */
+    background-color: #eef8f2;;
+    padding: 10px;
+    border-radius: 8px;
   }
   
   .nav-button {
     padding: 10px 20px;
     margin: 0 5px;
     border: none;
-    background-color: #ddd;
+    background-color: #bbb;
     cursor: pointer;
     transition: background-color 0.3s;
+    /* width: 550px;
+    height: 40px; */
+    font-size: 22px;
+    background-color: #f8f8f8;
+    border-radius: 7px;
+    color: #555;
   }
   
   .nav-button.active {
-    background-color: #bbb;
+    color: #555;
+    background-color: #f8f8f8;
   }
   
   .nav-button:hover {

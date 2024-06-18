@@ -71,6 +71,7 @@ const MovieList = () => {
 
   return (
     <>
+    <div className='subheader'>
       <NavBar activeTab={activeTab} onTabChange={(tab) => {
         if (tab !== activeTab) {
           setActiveTab(tab);
@@ -117,6 +118,7 @@ const MovieList = () => {
           </select>
         </div>
       )}
+      </div>
       <div className='movie-list'>
         {movies.map((movie) => (
           <MovieCard
@@ -149,6 +151,7 @@ const MovieList = () => {
           <h4>Overview: {selectedMovie.overview}</h4>
         </Modal>
       )}
+      
     </>
   );
 };
