@@ -138,7 +138,6 @@ const getGenreNames = (genreIds) => {
           <h4>Release Data: {selectedMovie.release_date}</h4>
           <h4>Genres: {getGenreNames(selectedMovie.genre_ids)}</h4>
           <h4>Overview: {selectedMovie.overview}</h4>
-          {/* console.log */}
         </Modal>
       )}
 
