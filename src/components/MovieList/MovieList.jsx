@@ -68,6 +68,7 @@ const MovieList = () => {
     return genreIds.map(id => genres.find(genre => genre.id === id)?.name).join(', ');
   };
 
+
   return (
     <>
       <NavBar activeTab={activeTab} onTabChange={(tab) => {
