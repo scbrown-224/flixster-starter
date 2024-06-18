@@ -14,6 +14,9 @@ const MovieList = () => {
     const [selectedMovie, setSelectedMovie] = useState(null);
     const [genres, setGenres] = useState([]);
 
+    // new
+    const [sortOption, setSortOption] = useState('');
+
     useEffect(() => {
         // fetch movie data from the api
         
@@ -22,10 +25,9 @@ const MovieList = () => {
             let searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${searchTerm}`; 
             let url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&page=${pageNum}`; 
 
-            // fetch(searchUrl)
-            //   .then(response => response.json())
-            //   .then(response => console.log(response))
-            //   .catch(err => console.error(err));
+            if (sortOption) {
+              url += `&sort_by=${sortOption}`;
+            }
 
             const response = await fetch(url);
             const data = await response.json();
@@ -47,7 +49,7 @@ const MovieList = () => {
         // stopped @ 1:12:42 of vid
 
 
-    }, [pageNum]);
+    }, [pageNum, sortOption]);
 
     const searchMovies = async () => {
       const apiKey = import.meta.env.VITE_API_KEY;
@@ -107,6 +109,15 @@ const getGenreNames = (genreIds) => {
         <button onClick={handleSearch}>search</button>
       </div>
 
+      <div className='filterContainer'>
+        <select onChange={(e) => setSortOption(e.target.value)}>
+          <option value=''>Sort By</option>
+          <option value='popularity.desc'>Popularity Descending</option>
+          <option value='release_date.desc'>Release Date Descending</option>
+          <option value='vote_average.desc'>Rating Descending</option>
+        </select>
+      </div>
+
       <div className = 'movie-list'>
       {movies.map((movie) => (
         <MovieCard 
@@ -138,6 +149,7 @@ const getGenreNames = (genreIds) => {
           <h4>Release Data: {selectedMovie.release_date}</h4>
           <h4>Genres: {getGenreNames(selectedMovie.genre_ids)}</h4>
           <h4>Overview: {selectedMovie.overview}</h4>
+          {/* console.log */}
         </Modal>
       )}
 
