@@ -12,6 +12,7 @@ const MovieList = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [pageNum, setPageNum] = useState(1); // State to keep track of current page number
     const [selectedMovie, setSelectedMovie] = useState(null);
+    const [genres, setGenres] = useState([]);
 
     useEffect(() => {
         // fetch movie data from the api
@@ -73,6 +74,31 @@ const MovieList = () => {
     setPageNum((pageNum) => pageNum + 1); // Increment page number to fetch next page
 };
 
+// more miss chat
+useEffect(() => {
+  // Fetch the list of genres
+  const fetchGenres = async () => {
+      const apiKey = import.meta.env.VITE_API_KEY;
+      const url = `https://api.themoviedb.org/3/genre/movie/list?language=en&api_key=${apiKey}`;
+      
+      try {
+          const response = await fetch(url);
+          const data = await response.json();
+          setGenres(data.genres);
+      } catch (error) {
+          console.error('Error fetching genres:', error);
+      }
+  };
+
+  fetchGenres();
+}, []);
+
+const getGenreNames = (genreIds) => {
+  return genreIds.map(id => genres.find(genre => genre.id === id).name).join(', ');
+};
+
+
+
 
   return (
     <>
@@ -103,12 +129,16 @@ const MovieList = () => {
           show={selectedMovie !== null}
           onClose={() => setSelectedMovie(null)}
         >
-          <h2>{selectedMovie.original_title}</h2>
           <img
-            src={`https://image.tmdb.org/t/p/w500${selectedMovie.poster_path}`}
+            src={`https://image.tmdb.org/t/p/w500${selectedMovie.backdrop_path}`}
             alt={selectedMovie.original_title}
             style={{ width: "100%" }}
           />
+          <h2>{selectedMovie.original_title}</h2>
+          <h4>Release Data: {selectedMovie.release_date}</h4>
+          <h4>Genres: {getGenreNames(selectedMovie.genre_ids)}</h4>
+          <h4>Overview: {selectedMovie.overview}</h4>
+          {/* console.log */}
         </Modal>
       )}
 
