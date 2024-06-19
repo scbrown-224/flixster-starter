@@ -1,5 +1,4 @@
 
-
 ## Unit Assignment: Flixster
 
 Submitted by: Sydney Brown
@@ -49,7 +48,14 @@ Deployed Application (optional): [Flixster Deployed Site](https://flixster-start
 
 `TODO://` Add the embedded URL code to your animated app walkthrough below, `ADD_EMBEDDED_CODE_HERE`. Make sure the video or gif actually renders and animates when viewing this README. (🚫 Remove this paragraph after adding walkthrough video)
 
-`ADD_EMBEDDED_CODE_HERE`
+<div>
+    <a href="https://www.loom.com/share/8002aabf3c544d1096fdc0d6f603173e">
+      <p>project 3 - Watch Video</p>
+    </a>
+    <a href="https://www.loom.com/share/8002aabf3c544d1096fdc0d6f603173e">
+      <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/8002aabf3c544d1096fdc0d6f603173e-with-play.gif">
+    </a>
+  </div>
 
 ### Reflection
 
