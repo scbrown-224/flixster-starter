@@ -59,15 +59,15 @@ Deployed Application (optional): [Flixster Deployed Site](https://flixster-start
 
 * Did the topics discussed in your labs prepare you to complete the assignment? Be specific, which features in your weekly assignment did you feel unprepared to complete?
 
-Add your response here
+Yes, the topics we discussed in class related to what we completed in this project. Especially everything we learned in React. Specifically, useStates and useEffects. I felt unprepared to do those features at first, but the review session with Devarsh was especially helpful
 
 * If you had more time, what would you have done differently? Would you have added additional features? Changed the way your project responded to a particular event, etc.
   
-Add your response here
+I would have had a deeper understanding of what I was actually doing. I really relied on ChatGPT for this assignment to teach me how to apply class concepts to the project. Some stuff like altering the URL I don't think I ever would've thought of without AI. For other things, I don't think I did them the most effiicent way because I used the AI method, but I didn't really have another solution. I would take more time to actually understand all of my code
 
 * Reflect on your project demo, what went well? Were there things that maybe didn't go as planned? Did you notice something that your peer did that you would like to try next time?
 
-Add your response here
+I had fun in my demo! I felt much more confident than last time. However, I felt like I could have rushed at the end because I only had about 1 minute to do the actual demo
 
 ### Open-source libraries used
 
@@ -75,4 +75,4 @@ Add your response here
 
 ### Shout out
 
-Give a shout out to somebody from your cohort that especially helped you during your project. This can be a fellow peer, instructor, TA, mentor, etc.
+Keith, Devarsh's videos, Karina, Andy, Chris!!
